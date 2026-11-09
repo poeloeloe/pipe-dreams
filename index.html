@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PIPE DREAMS — Loodgieterswerk zo goed dat je mama erover hoort</title>
+<meta name="description" content="Lekken, afvoeren, ketels en badkamers. Snel, netjes en vriendelijk loodgieterswerk.">
+<meta name="theme-color" content="#030a1c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script>
+/* ============================================================
+   ✏️  EDIT YOUR DETAILS HERE — everything on the page updates.
+   ============================================================ */
+window.BIZ = {
+  name:  'PIPE DREAMS',            // business name (shown HUGE)
+  owner: 'Jouw Naam',              // your name
+  phone: '+00 000 000 000',        // phone number
+  email: 'hallo@example.com',      // email
+  area:  'Jouw stad & omgeving'    // where you work
+};
+</script>
+
+<style>
+:root{
+  --cyan:#19e3ff; --pink:#ff3fa4; --yellow:#ffd60a; --navy:#030a1c;
+  --p:0; --mega:29vw;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--navy);color:#fff;overflow-x:hidden;
+  font-family:'Space Grotesk',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent;
+}
+body.nogl{background:radial-gradient(120% 80% at 50% 0%,#0b3a7a 0%,#030a1c 55%,#3a0b3f 100%) fixed}
+#gl{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;display:block;z-index:0}
+main{position:relative;z-index:1}
+a{color:inherit}
+
+/* ---------- loader ---------- */
+#loader{
+  position:fixed;inset:0;z-index:50;background:var(--navy);display:grid;place-items:center;
+  transition:opacity .8s ease,visibility .8s;
+}
+body.ready #loader{opacity:0;visibility:hidden}
+.drip{width:26px;height:26px;background:var(--cyan);border-radius:0 50% 50% 50%;transform:rotate(45deg);
+  animation:drip 1s cubic-bezier(.6,0,.9,.5) infinite;box-shadow:0 0 30px var(--cyan)}
+@keyframes drip{0%{translate:0 -60px;scale:.3}70%{translate:0 40px;scale:1}100%{translate:0 40px;scale:1.8 .1;opacity:0}}
+#loader p{position:absolute;margin-top:140px;letter-spacing:.4em;font-size:.75rem;opacity:.7}
+
+/* ---------- nav + HUD ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+  padding:calc(.7rem + env(safe-area-inset-top)) 1rem .7rem;
+  background:linear-gradient(#030a1ccc,#030a1c00);pointer-events:none;
+}
+nav>*{pointer-events:auto}
+.brand{font-family:Anton,Impact,sans-serif;font-size:1.25rem;letter-spacing:.06em;text-decoration:none;
+  text-shadow:2px 2px 0 var(--pink)}
+.pill{
+  display:inline-flex;align-items:center;gap:.5em;text-decoration:none;font-weight:700;
+  padding:.6em 1.1em;border-radius:99px;color:#030a1c;background:var(--yellow);
+  box-shadow:0 0 0 3px #030a1c,0 0 0 5px var(--yellow),0 0 28px #ffd60a99;
+  animation:pulse 1.6s ease-in-out infinite;white-space:nowrap;
+}
+@keyframes pulse{50%{box-shadow:0 0 0 3px #030a1c,0 0 0 7px var(--yellow),0 0 50px #ffd60a}}
+.pill.big{font-size:1.35rem;padding:.8em 1.5em}
+
+#hud{position:fixed;right:10px;top:22%;height:56%;z-index:9;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+#hud .tube{flex:1;width:14px;border:2px solid #ffffff88;border-radius:10px;overflow:hidden;background:#030a1c88;position:relative}
+#hud .fill{position:absolute;left:0;right:0;top:0;height:calc(var(--p)*100%);
+  background:linear-gradient(var(--cyan),var(--pink));box-shadow:0 0 14px var(--cyan)}
+#hud small{font-size:.6rem;letter-spacing:.15em;writing-mode:vertical-rl;opacity:.85;font-weight:700}
+
+/* ---------- layout ---------- */
+section{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 2.2rem 4rem 1.25rem;max-width:1100px;margin:0 auto;position:relative}
+h1,h2,.shout{font-family:Anton,Impact,'Arial Narrow Bold',sans-serif;font-weight:400;text-transform:uppercase;margin:0;line-height:.9}
+h2{font-size:clamp(2.6rem,11vw,6rem);text-shadow:3px 3px 0 var(--pink),-2px -2px 0 #19e3ff88}
+h2 em{font-style:normal;color:var(--yellow)}
+.kicker{letter-spacing:.35em;text-transform:uppercase;font-size:.75rem;font-weight:700;color:var(--cyan);margin:0 0 .8rem}
+p.lead{font-size:1.15rem;max-width:34em;text-shadow:0 2px 12px #030a1c}
+
+/* ---------- hero ---------- */
+#top{justify-content:flex-end;padding-bottom:calc(5rem + env(safe-area-inset-bottom))}
+.mega{font-size:min(var(--mega),15rem);line-height:.84;letter-spacing:-.01em}
+.mega span{
+  display:block;width:max-content;
+  background:linear-gradient(100deg,#fff 0%,#9fefff 20%,#fff 35%,#ffd60a 50%,#fff 62%,#ff9fd3 80%,#fff 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(4px 4px 0 var(--pink)) drop-shadow(-3px -3px 0 #19e3ffaa);
+  animation:sheen 5s linear infinite;
+}
+.mega span:nth-child(2){animation-delay:-2s}
+@keyframes sheen{to{background-position:-300% 0}}
+.tag{font-size:clamp(1.1rem,4.6vw,1.7rem);font-weight:700;margin:1rem 0 1.4rem;max-width:22em;text-shadow:0 2px 14px #030a1c}
+.tag b{color:var(--yellow)}
+.row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.ghost{font-weight:700;text-decoration:none;padding:.6em 0;border-bottom:2px solid var(--cyan)}
+.scrollhint{position:absolute;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom));translate:-50% 0;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;animation:bob 1.4s ease-in-out infinite;white-space:nowrap}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;white-space:nowrap;background:var(--yellow);color:#030a1c;font-family:Anton,Impact,sans-serif;
+  font-size:1.5rem;padding:.35em 0;transform:rotate(-2deg) scale(1.05);box-shadow:0 0 40px #ffd60a66;position:relative;z-index:2}
+.marquee div{display:inline-block;animation:slide 18s linear infinite}
+.marquee.rev{background:var(--pink);color:#fff;transform:rotate(2deg) scale(1.05);box-shadow:0 0 40px #ff3fa466}
+.marquee.rev div{animation-direction:reverse}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- interludes ---------- */
+.gap{min-height:70vh;align-items:center;text-align:center}
+.shout{font-size:clamp(4rem,24vw,14rem);color:transparent;-webkit-text-stroke:2px #fff;opacity:.9;
+  text-shadow:0 0 40px #19e3ff88}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:perspective(900px) translateY(70px) rotateX(28deg) scale(.9);
+  transition:opacity .9s cubic-bezier(.2,.9,.2,1),transform .9s cubic-bezier(.2,.9,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- cards ---------- */
+.glass{
+  background:rgba(3,10,28,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border:1px solid rgba(25,227,255,.4);border-radius:22px;
+  box-shadow:0 0 34px rgba(25,227,255,.16),inset 0 0 24px rgba(255,63,164,.1);
+}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:2rem}
+.card{padding:1.4rem 1.3rem;will-change:transform}
+.card .ico{font-size:2.6rem;display:inline-block;animation:float 3s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes float{50%{transform:translateY(-8px) rotate(-6deg)}}
+.card h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.6rem;margin:.3rem 0 .3rem;letter-spacing:.03em;text-transform:uppercase}
+.card p{margin:0;opacity:.9}
+.stat b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(3rem,13vw,4.6rem);line-height:1;
+  color:var(--yellow);text-shadow:3px 3px 0 var(--pink)}
+.step{display:flex;gap:1rem;align-items:flex-start}
+.step .n{font-family:Anton,Impact,sans-serif;font-size:3.4rem;line-height:.9;color:var(--cyan);text-shadow:3px 3px 0 var(--pink)}
+
+/* ---------- mum ---------- */
+blockquote{margin:1.5rem 0 0;padding:1.6rem 1.4rem;font-size:clamp(1.3rem,5.4vw,2.2rem);font-weight:700;line-height:1.25}
+blockquote footer{font-size:1rem;font-weight:400;margin-top:1rem;color:var(--yellow)}
+.stars{color:var(--yellow);letter-spacing:.2em;font-size:1.4rem}
+
+/* ---------- contact ---------- */
+#contact{min-height:135vh;min-height:135svh;justify-content:flex-end;padding-bottom:2rem}
+#contact .glass{padding:1.6rem 1.3rem;text-align:center}
+#contact h2{font-size:clamp(2.4rem,10vw,5rem)}
+#contact .row{justify-content:center;margin-top:1.2rem}
+.duckbtn{background:none;border:2px dashed #fff8;color:#fff;font:inherit;font-weight:700;padding:.6em 1em;border-radius:99px;cursor:pointer}
+.duckbtn:active{transform:scale(.94)}
+footer.site{text-align:center;font-size:.8rem;opacity:.85;padding:1.4rem 1rem calc(1.4rem + env(safe-area-inset-bottom));position:relative;z-index:1;text-shadow:0 1px 8px #030a1c}
+
+/* ---------- fx ---------- */
+.rip{position:fixed;z-index:40;width:20px;height:20px;margin:-10px;border-radius:50%;border:3px solid var(--cyan);
+  pointer-events:none;animation:rip .7s ease-out forwards}
+@keyframes rip{to{transform:scale(9);opacity:0;border-width:1px}}
+.fall{position:fixed;top:-60px;z-index:45;pointer-events:none;font-size:2rem;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(120vh) rotate(720deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+  .reveal{transition:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+
+<div id="loader"><div class="drip"></div><p>DRUK OPBOUWEN…</p></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<nav>
+  <a class="brand" href="#top">🔧 <span data-biz="name">PIPE DREAMS</span></a>
+  <a class="pill" data-tel href="#contact">📞 Bel nu</a>
+</nav>
+
+<div id="hud" aria-hidden="true">
+  <div class="tube"><div class="fill"></div></div>
+  <small id="depth">DIEPTE 0 M</small>
+</div>
+
+<main>
+  <section id="top">
+    <p class="kicker">Verstopt? Lek? Paniek?</p>
+    <h1 class="mega" id="mega" aria-label="Pipe Dreams"></h1>
+    <p class="tag">Loodgieterswerk zo goed <b>dat je mama erover hoort.</b></p>
+    <div class="row">
+      <a class="pill big" data-tel href="#contact">📞 Bel <span data-biz="owner">mij</span></a>
+      <a class="ghost" href="#services">Wat ik oplos ↓</a>
+    </div>
+    <div class="scrollhint">▼ scroll de buis in ▼</div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div>
+    LEKKEN ✦ AFVOEREN ✦ KETELS ✦ BADKAMERS ✦ KRANEN ✦ TOILETTEN ✦ SPOEDGEVALLEN ✦ WONDEREN ✦
+    LEKKEN ✦ AFVOEREN ✦ KETELS ✦ BADKAMERS ✦ KRANEN ✦ TOILETTEN ✦ SPOEDGEVALLEN ✦ WONDEREN ✦
+    LEKKEN ✦ AFVOEREN ✦ KETELS ✦ BADKAMERS ✦ KRANEN ✦ TOILETTEN ✦ SPOEDGEVALLEN ✦ WONDEREN ✦
+    LEKKEN ✦ AFVOEREN ✦ KETELS ✦ BADKAMERS ✦ KRANEN ✦ TOILETTEN ✦ SPOEDGEVALLEN ✦ WONDEREN ✦
+  </div></div>
+
+  <section id="stats">
+    <p class="kicker reveal">Je zit nu in de buis</p>
+    <h2 class="reveal">Cijfers die <em>niet lekken</em></h2>
+    <div class="grid">
+      <div class="card glass stat reveal" style="--d:.05s"><b>24/7</b>Spoedinterventies. Buizen houden geen kantooruren.</div>
+      <div class="card glass stat reveal" style="--d:.15s"><b>0</b>Lekken achtergelaten. Daar gaat het tenslotte om.</div>
+      <div class="card glass stat reveal" style="--d:.25s"><b>100%</b>Broek netjes opgetrokken. Gegarandeerd.</div>
+      <div class="card glass stat reveal" style="--d:.35s"><b>∞</b>Kopjes koffie dankbaar aanvaard.</div>
+    </div>
+  </section>
+
+  <section class="gap" aria-hidden="true"><div class="shout reveal">Dieper…</div></section>
+
+  <section id="services">
+    <p class="kicker reveal">Diensten</p>
+    <h2 class="reveal">Komt er water aan te pas? <em>Ik los het op</em></h2>
+    <div class="grid">
+      <div class="card glass tilt reveal" style="--d:.0s"><span class="ico">💧</span><h3>Lekken &amp; druppels</h3><p>Die druppel die je om 3 uur 's nachts wakker houdt? Weg. Gevonden, hersteld en drooggemaakt.</p></div>
+      <div class="card glass tilt reveal" style="--d:.08s"><span class="ico" style="--d:-.5s">🌀</span><h3>Verstopte afvoeren</h3><p>Gootsteen, douche, toilet, buitenafvoer. Wat er ook in zit, het komt eruit.</p></div>
+      <div class="card glass tilt reveal" style="--d:.16s"><span class="ico" style="--d:-1s">🔥</span><h3>Ketels &amp; warm water</h3><p>Koude douches zijn voor mensen die er zelf voor kiezen. Herstelling, onderhoud, vervanging.</p></div>
+      <div class="card glass tilt reveal" style="--d:.24s"><span class="ico" style="--d:-1.5s">🛁</span><h3>Badkamers</h3><p>Van vermoeide jaren-70-badkamer tot spa. Netjes geplaatst, goed afgekit, op tijd klaar.</p></div>
+      <div class="card glass tilt reveal" style="--d:.32s"><span class="ico" style="--d:-2s">🚽</span><h3>Kranen &amp; toiletten</h3><p>Het loopt, wiebelt, druppelt of weigert door te spoelen? Opgelost in één bezoek.</p></div>
+      <div class="card glass tilt reveal" style="--d:.40s"><span class="ico" style="--d:-2.5s">🚨</span><h3>Spoedgevallen</h3><p>Water waar geen water hoort? Draai de hoofdkraan dicht en bel. Ik ben onderweg.</p></div>
+    </div>
+  </section>
+
+  <div class="marquee rev" aria-hidden="true"><div>
+    GEEN KLUS TE KLEIN ✦ GEEN VERSTOPPING TE VIES ✦ GRATIS OFFERTE ✦ NETJES WERK ✦
+    GEEN KLUS TE KLEIN ✦ GEEN VERSTOPPING TE VIES ✦ GRATIS OFFERTE ✦ NETJES WERK ✦
+    GEEN KLUS TE KLEIN ✦ GEEN VERSTOPPING TE VIES ✦ GRATIS OFFERTE ✦ NETJES WERK ✦
+    GEEN KLUS TE KLEIN ✦ GEEN VERSTOPPING TE VIES ✦ GRATIS OFFERTE ✦ NETJES WERK ✦
+  </div></div>
+
+  <section id="how">
+    <p class="kicker reveal">Zo werkt het</p>
+    <h2 class="reveal">In drie stappen <em>droge sokken</em></h2>
+    <div class="grid">
+      <div class="card glass step reveal" style="--d:.05s"><span class="n">1</span><div><h3>Jij belt</h3><p>Vertel me wat nat is en niet nat hoort te zijn. Foto's helpen.</p></div></div>
+      <div class="card glass step reveal" style="--d:.15s"><span class="n">2</span><div><h3>Ik kom langs</h3><p>Op tijd, met de juiste onderdelen en een duidelijke prijs vooraf.</p></div></div>
+      <div class="card glass step reveal" style="--d:.25s"><span class="n">3</span><div><h3>Het water luistert</h3><p>Hersteld, getest, opgeruimd. Jij kan verder met je dag.</p></div></div>
+    </div>
+  </section>
+
+  <section id="mum">
+    <p class="kicker reveal">De enige review die telt</p>
+    <h2 class="reveal">Door mama <em>goedgekeurd</em></h2>
+    <blockquote class="glass reveal" style="--d:.15s">
+      <div class="stars">★★★★★</div>
+      “Als kind haalde hij alles al uit elkaar. Nu betalen mensen hem ervoor. Bel hem — en zeg dat hij zijn moeder nog eens belt.”
+      <footer>— Mama (waarschijnlijk)</footer>
+    </blockquote>
+  </section>
+
+  <section class="gap" aria-hidden="true"><div class="shout reveal">Bijna<br>buiten…</div></section>
+
+  <section id="contact">
+    <div class="glass reveal">
+      <p class="kicker">Je bent er aan de andere kant uit</p>
+      <h2>Alles weer <em>laten stromen</em></h2>
+      <p>Actief in <b data-biz="area">jouw regio</b>. Gratis offerte, eerlijk antwoord.</p>
+      <div class="row">
+        <a class="pill big" data-tel href="#">📞 <span data-biz="phone">Bel</span></a>
+      </div>
+      <div class="row">
+        <a class="ghost" data-mail href="#">✉️ <span data-biz="email">Email</span></a>
+        <button class="duckbtn" id="ducks" type="button">🦆 Laat de eenden los</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">© <span id="yr"></span> <span data-biz="name">PIPE DREAMS</span> · <span data-biz="owner"></span> · Bij het maken van deze website raakte geen enkele eend gewond.</footer>
+
+<script>
+/* ---------- fill in business details ---------- */
+(function(){
+  var B = window.BIZ;
+  document.querySelectorAll('[data-biz]').forEach(function(el){ el.textContent = B[el.dataset.biz]; });
+  document.querySelectorAll('[data-tel]').forEach(function(a){ a.href = 'tel:' + B.phone.replace(/[^\d+]/g,''); });
+  document.querySelectorAll('[data-mail]').forEach(function(a){ a.href = 'mailto:' + B.email; });
+  document.title = B.name + ' — Loodgieterswerk zo goed dat je mama erover hoort';
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // giant hero title: one line per word, sized to fit the longest word
+  var mega = document.getElementById('mega'), words = B.name.trim().split(/\s+/), longest = 1;
+  mega.setAttribute('aria-label', B.name);
+  words.forEach(function(w){ var s = document.createElement('span'); s.textContent = w; mega.appendChild(s); longest = Math.max(longest, w.length); });
+  document.documentElement.style.setProperty('--mega', Math.min(29, 168/longest) + 'vw');
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // tap ripples
+  addEventListener('pointerdown', function(e){
+    var r = document.createElement('div'); r.className = 'rip';
+    r.style.left = e.clientX + 'px'; r.style.top = e.clientY + 'px';
+    document.body.appendChild(r); r.addEventListener('animationend', function(){ r.remove(); });
+  }, {passive:true});
+
+  // 3D tilt on cards (mouse only)
+  if (matchMedia('(hover:hover)').matches) {
+    document.querySelectorAll('.tilt').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        if(!c.classList.contains('in')) return;
+        var b = c.getBoundingClientRect(), x = (e.clientX-b.left)/b.width-.5, y = (e.clientY-b.top)/b.height-.5;
+        c.style.transition = 'transform .08s';
+        c.style.transform = 'perspective(700px) rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg) scale(1.04)';
+      });
+      c.addEventListener('pointerleave', function(){ c.style.transition = ''; c.style.transform = ''; });
+    });
+  }
+
+  // release the ducks
+  document.getElementById('ducks').addEventListener('click', function(){
+    var bits = ['🦆','🦆','🦆','💧','🔧','🪠','🛁'];
+    for (var i=0;i<46;i++){
+      var d = document.createElement('span'); d.className = 'fall';
+      d.textContent = bits[Math.floor(Math.random()*bits.length)];
+      d.style.left = (Math.random()*96) + 'vw';
+      d.style.fontSize = (1.4+Math.random()*2.2) + 'rem';
+      d.style.animationDuration = (1.6+Math.random()*2.2) + 's';
+      d.style.animationDelay = (Math.random()*.9) + 's';
+      document.body.appendChild(d);
+      d.addEventListener('animationend', function(e){ e.target.remove(); });
+    }
+  });
+
+  // never get stuck on the loader
+  setTimeout(function(){ document.body.classList.add('ready'); }, 5000);
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas = document.getElementById('gl');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (e) {
+  document.body.classList.add('nogl', 'ready');
+  canvas.remove();
+  throw e;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+
+const BG_DEEP = new THREE.Color(0x030a1c), BG_HEAVEN = new THREE.Color(0xff5fa2);
+const scene = new THREE.Scene();
+scene.background = BG_DEEP.clone();
+scene.fog = new THREE.FogExp2(BG_DEEP.clone(), 0.035);
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 240);
+scene.add(camera);
+const headlamp = new THREE.PointLight(0x19e3ff, 30, 20, 2);
+camera.add(headlamp);
+const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+sun.position.set(3, 6, 5);
+scene.add(sun);
+
+/* ---------- materials ---------- */
+const M = {
+  chrome: new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 1, roughness: 0.12 }),
+  gold:   new THREE.MeshStandardMaterial({ color: 0xffc233, metalness: 1, roughness: 0.2 }),
+  duck:   new THREE.MeshStandardMaterial({ color: 0xffd60a, metalness: 0, roughness: 0.25 }),
+  beak:   new THREE.MeshStandardMaterial({ color: 0xff6a00, roughness: 0.35 }),
+  black:  new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.1 }),
+  rubber: new THREE.MeshStandardMaterial({ color: 0xe6283c, roughness: 0.4, side: THREE.DoubleSide }),
+  wood:   new THREE.MeshStandardMaterial({ color: 0xb5793a, roughness: 0.6 }),
+};
+const NEON = [0x19e3ff, 0xff3fa4, 0xffd60a].map(c => new THREE.MeshBasicMaterial({ color: c, toneMapped: false }));
+
+/* ---------- props ---------- */
+const G = {
+  handle: new THREE.BoxGeometry(0.5, 3, 0.2),
+  jaw: new THREE.TorusGeometry(0.62, 0.24, 14, 36, Math.PI * 1.5),
+  eye: new THREE.TorusGeometry(0.45, 0.2, 14, 32),
+  stick: new THREE.CylinderGeometry(0.07, 0.07, 2.2, 10),
+  cup: new THREE.SphereGeometry(0.6, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2),
+  rim: new THREE.TorusGeometry(0.6, 0.06, 8, 28),
+  ball: new THREE.SphereGeometry(1, 28, 20),
+  cone: new THREE.ConeGeometry(0.3, 0.7, 12),
+};
+function makeWrench(mat) {
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(G.handle, mat));
+  const jaw = new THREE.Mesh(G.jaw, mat); jaw.position.y = 1.95; jaw.rotation.z = Math.PI * 0.75; g.add(jaw);
+  const eye = new THREE.Mesh(G.eye, mat); eye.position.y = -1.85; g.add(eye);
+  return g;
+}
+function makePlunger(cupMat, stickMat) {
+  const g = new THREE.Group();
+  const s = new THREE.Mesh(G.stick, stickMat); s.position.y = 1.5; g.add(s);
+  const c = new THREE.Mesh(G.cup, cupMat); c.scale.y = 0.85; g.add(c);
+  const r = new THREE.Mesh(G.rim, cupMat); r.rotation.x = Math.PI / 2; g.add(r);
+  g.children.forEach(m => m.position.y -= 1);
+  return g;
+}
+function makeDuck() {
+  const g = new THREE.Group();
+  const part = (mat, sx, sy, sz, x, y, z) => { const m = new THREE.Mesh(G.ball, mat); m.scale.set(sx, sy, sz); m.position.set(x, y, z); g.add(m); return m; };
+  part(M.duck, 1.15, 0.85, 1.4, 0, 0, 0);            // body
+  part(M.duck, 0.62, 0.62, 0.62, 0, 1.05, 0.75);     // head
+  part(M.beak, 0.32, 0.13, 0.42, 0, 0.97, 1.38);     // beak
+  part(M.duck, 0.16, 0.42, 0.75, 1.08, 0.1, -0.1);   // wings
+  part(M.duck, 0.16, 0.42, 0.75, -1.08, 0.1, -0.1);
+  part(M.black, 0.08, 0.08, 0.08, 0.27, 1.24, 1.26); // eyes
+  part(M.black, 0.08, 0.08, 0.08, -0.27, 1.24, 1.26);
+  const tail = new THREE.Mesh(G.cone, M.duck); tail.position.set(0, 0.5, -1.3); tail.rotation.x = -0.9; g.add(tail);
+  return g;
+}
+
+/* ---------- the route: hero -> pipe -> duck heaven ---------- */
+const path = new THREE.CatmullRomCurve3([
+  [0, 0, 9], [0, 0, 2], [0, 0, -6], [3, 1, -20], [-3, -2, -36], [4, 2, -52],
+  [-2, -1, -68], [0, 0, -82], [0, 0, -92], [0, 1.5, -104],
+].map(p => new THREE.Vector3(...p)), false, 'centripetal');
+path.arcLengthDivisions = 2000;
+const A = 0.13, B = 0.895;               // where the pipe starts / ends along the route
+class PipeRun extends THREE.Curve {
+  getPoint(t, target = new THREE.Vector3()) { return path.getPointAt(A + (B - A) * t, target); }
+}
+const run = new PipeRun();
+const R = 2.2;
+
+function pipeTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  const x = c.getContext('2d');
+  x.fillStyle = '#0a2748'; x.fillRect(0, 0, 512, 512);
+  x.fillStyle = '#0f3b6b'; x.fillRect(14, 14, 484, 484);
+  x.fillStyle = '#0c3159'; x.fillRect(40, 40, 432, 432);
+  x.fillStyle = '#19e3ff'; x.fillRect(0, 0, 8, 512);            // ring seam
+  x.fillStyle = '#ff3fa4'; x.fillRect(0, 252, 512, 8);          // lengthwise stripe
+  x.fillStyle = '#ffd60a';
+  for (let i = 0; i < 4; i++) { x.fillRect(120 + i * 80, 226, 40, 14); }
+  x.fillStyle = '#9fd4ff';
+  for (const [rx, ry] of [[60, 60], [452, 60], [60, 452], [452, 452]]) { x.beginPath(); x.arc(rx, ry, 12, 0, 7); x.fill(); }
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(40, 6);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  return t;
+}
+const tex = pipeTexture();
+const pipe = new THREE.Mesh(
+  new THREE.TubeGeometry(run, 320, R, 24, false),
+  new THREE.MeshStandardMaterial({ map: tex, emissiveMap: tex, emissive: 0xffffff, emissiveIntensity: 0.45, metalness: 0.7, roughness: 0.3, side: THREE.DoubleSide })
+);
+scene.add(pipe);
+
+// neon hoops + end flanges
+const hoopGeo = new THREE.TorusGeometry(R - 0.12, 0.05, 8, 48);
+const tmpP = new THREE.Vector3(), tmpT = new THREE.Vector3();
+const HOOPS = 40;
+for (let i = 0; i < HOOPS; i++) {
+  const t = i / (HOOPS - 1);
+  run.getPointAt(t, tmpP); run.getTangentAt(t, tmpT);
+  const h = new THREE.Mesh(hoopGeo, NEON[i % 3]);
+  h.position.copy(tmpP); h.lookAt(tmpP.clone().add(tmpT)); scene.add(h);
+}
+for (const t of [0, 1]) {
+  run.getPointAt(t, tmpP); run.getTangentAt(t, tmpT);
+  const f = new THREE.Mesh(new THREE.TorusGeometry(R + 0.2, 0.34, 16, 48), M.chrome);
+  f.position.copy(tmpP); f.lookAt(tmpP.clone().add(tmpT)); scene.add(f);
+}
+
+// junk floating in the pipe
+const spinners = [];
+const up = new THREE.Vector3(0, 1, 0), nrm = new THREE.Vector3(), bin = new THREE.Vector3();
+function offAxis(t, radius, angle, out) {
+  run.getPointAt(t, out); run.getTangentAt(t, tmpT);
+  nrm.crossVectors(tmpT, up).normalize(); bin.crossVectors(tmpT, nrm);
+  return out.addScaledVector(nrm, Math.cos(angle) * radius).addScaledVector(bin, Math.sin(angle) * radius);
+}
+const makers = [() => makeDuck(), () => makeWrench(M.chrome), () => makePlunger(M.rubber, M.wood), () => makeWrench(M.gold)];
+for (let i = 0; i < 28; i++) {
+  const o = makers[i % makers.length]();
+  o.scale.setScalar(i % makers.length === 0 ? 0.26 : 0.22);
+  offAxis(0.05 + 0.9 * i / 27, rnd(1.0, 1.5), rnd(0, 6.28), o.position);
+  o.rotation.set(rnd(0, 6), rnd(0, 6), rnd(0, 6));
+  o.userData.s = [rnd(-1.5, 1.5), rnd(-1.5, 1.5)];
+  scene.add(o); spinners.push(o);
+}
+
+// sparkle sprite
+const dot = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d');
+  const g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+  g.addColorStop(0, '#fff'); g.addColorStop(0.3, 'rgba(255,255,255,.8)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = g; x.fillRect(0, 0, 64, 64);
+  return new THREE.CanvasTexture(c);
+})();
+function points(arr, size, color) {
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  const p = new THREE.Points(g, new THREE.PointsMaterial({ size, map: dot, color, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  p.frustumCulled = false; scene.add(p); return p;
+}
+// droplets inside the pipe
+{
+  const n = 900, arr = new Float32Array(n * 3), v = new THREE.Vector3();
+  for (let i = 0; i < n; i++) { offAxis(Math.random(), rnd(0.3, R - 0.25), rnd(0, 6.28), v); v.toArray(arr, i * 3); }
+  points(arr, 0.13, 0x9ff3ff);
+}
+// bubbles rising around the hero
+const BN = 420, bubArr = new Float32Array(BN * 3);
+for (let i = 0; i < BN; i++) { bubArr[i * 3] = rnd(-12, 12); bubArr[i * 3 + 1] = rnd(-10, 10); bubArr[i * 3 + 2] = rnd(-5, 7); }
+const bubbles = points(bubArr, 0.16, 0x7fe9ff);
+
+/* ---------- hero: the holy wrench ---------- */
+const wrench = makeWrench(M.chrome);
+scene.add(wrench);
+const halo = new THREE.Mesh(new THREE.TorusGeometry(2.7, 0.03, 8, 80), NEON[1]);
+const halo2 = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.03, 8, 80), NEON[0]);
+scene.add(halo, halo2);
+const fittings = [];
+for (let i = 0; i < 12; i++) {
+  const f = new THREE.Mesh(new THREE.TorusGeometry(rnd(0.25, 0.5), rnd(0.08, 0.16), 10, 24), i % 2 ? M.gold : M.chrome);
+  const a = rnd(0, 6.28), r = rnd(4, 8);
+  f.position.set(Math.cos(a) * r, Math.sin(a) * r * 0.8, rnd(-4, 3));
+  f.userData.s = [rnd(-1, 1), rnd(-1, 1)];
+  scene.add(f); fittings.push(f);
+}
+
+/* ---------- finale: duck heaven ---------- */
+const DUCK = new THREE.Vector3(0, -0.6, -114);
+const duck = makeDuck(); duck.scale.setScalar(2.2); duck.position.copy(DUCK); duck.rotation.y = 0.5; scene.add(duck);
+const orbiters = [0, 1, 2].map(i => { const p = makePlunger(M.gold, M.gold); p.userData.a = i * Math.PI * 2 / 3; scene.add(p); return p; });
+const waterGeo = new THREE.PlaneGeometry(90, 80, 44, 40); waterGeo.rotateX(-Math.PI / 2);
+const water = new THREE.Mesh(waterGeo, new THREE.MeshStandardMaterial({ color: 0x12c4d6, metalness: 0.35, roughness: 0.15, flatShading: true }));
+water.position.set(0, -1.5, -134); scene.add(water);
+const wPos = waterGeo.attributes.position;
+const bigSun = new THREE.Mesh(new THREE.CircleGeometry(15, 64), new THREE.MeshBasicMaterial({ color: 0xffe14d, fog: false, toneMapped: false }));
+bigSun.position.set(0, 5, -172); scene.add(bigSun);
+
+/* ---------- scroll + render ---------- */
+let target = 0, cur = 0, portrait = false, mx = 0, my = 0, pmx = 0, pmy = 0, lastDepth = -1;
+const depthEl = document.getElementById('depth'), root = document.documentElement;
+function onScroll() { const max = root.scrollHeight - innerHeight; target = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0; }
+function resize() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  portrait = w < h;
+  camera.aspect = w / h; camera.fov = portrait ? 78 : 60; camera.updateProjectionMatrix();
+  onScroll();
+}
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', resize);
+addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+resize(); cur = target;
+
+const camPos = new THREE.Vector3(), look = new THREE.Vector3(), duckLook = new THREE.Vector3();
+const clock = new THREE.Clock();
+let first = true;
+
+function frame() {
+  requestAnimationFrame(frame);
+  const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+  cur += (target - cur) * (reduce ? 1 : 0.07);
+  const p = Math.min(1, Math.max(0, cur));
+
+  // camera rides the route
+  path.getPointAt(p, camPos);
+  path.getPointAt(Math.min(p + 0.025, 1), look);
+  duckLook.copy(DUCK); duckLook.y -= portrait ? 3.4 : 0.6;
+  look.lerp(duckLook, smooth(0.84, 0.95, p));
+  pmx += (mx - pmx) * 0.05; pmy += (my - pmy) * 0.05;
+  camera.position.copy(camPos);
+  camera.position.x += pmx * 0.25; camera.position.y -= pmy * 0.2;
+  camera.lookAt(look);
+  const inPipe = smooth(A, A + 0.05, p) * (1 - smooth(B - 0.08, B, p));
+  if (!reduce) camera.rotateZ(Math.sin(p * Math.PI * 6) * 0.4 * inPipe);
+
+  // mood: deep navy -> vaporwave heaven
+  const heaven = smooth(0.6, 0.82, p);
+  scene.background.copy(BG_DEEP).lerp(BG_HEAVEN, heaven);
+  scene.fog.color.copy(scene.background);
+  scene.fog.density = 0.035 - 0.017 * heaven;
+  headlamp.color.setHSL((0.52 + p * 2) % 1, 1, 0.6);
+  headlamp.intensity = 30 * (1 - heaven);
+
+  // hero
+  const e = smooth(0, 0.1, p), wy = portrait ? 2.1 : 0.6;
+  wrench.position.set(portrait ? 0 : 3.2, wy + Math.sin(t * 1.3) * 0.18 + e * 8, 0);
+  wrench.rotation.set(Math.sin(t * 0.7) * 0.25, t * 0.9 + p * 40, 0.45);
+  wrench.scale.setScalar((portrait ? 0.95 : 1.15) * (1 - e * 0.6));
+  halo.position.copy(wrench.position); halo2.position.copy(wrench.position);
+  halo.rotation.set(t * 0.6, t * 0.4, 0); halo2.rotation.set(-t * 0.5, 0, t * 0.7);
+  halo.scale.setScalar(wrench.scale.x); halo2.scale.setScalar(wrench.scale.x);
+  for (const f of fittings) { f.rotation.x += f.userData.s[0] * dt; f.rotation.y += f.userData.s[1] * dt; }
+  if (p < 0.3) {
+    for (let i = 1; i < BN * 3; i += 3) { bubArr[i] += dt * (0.6 + (i % 7) * 0.12); if (bubArr[i] > 10) bubArr[i] = -10; }
+    bubbles.geometry.attributes.position.needsUpdate = true;
+  }
+
+  // pipe junk
+  for (const o of spinners) { o.rotation.x += o.userData.s[0] * dt; o.rotation.y += o.userData.s[1] * dt; }
+  tex.offset.x = -t * 0.15;
+
+  // finale
+  if (p > 0.7) {
+    for (let i = 0; i < wPos.count; i++) {
+      const x = wPos.getX(i), z = wPos.getZ(i);
+      wPos.setY(i, Math.sin(x * 0.35 + t * 1.4) * 0.22 + Math.cos(z * 0.3 + t) * 0.22);
+    }
+    wPos.needsUpdate = true;
+    duck.position.y = DUCK.y + Math.sin(t * 1.4) * 0.18;
+    duck.rotation.set(Math.sin(t * 1.1) * 0.06, 0.5 + Math.sin(t * 0.5) * 0.35, Math.sin(t * 0.9) * 0.07);
+    for (const o of orbiters) {
+      const a = o.userData.a + t * 0.9;
+      o.position.set(DUCK.x + Math.cos(a) * 4.6, DUCK.y + 3.2 + Math.sin(a * 2) * 0.5, DUCK.z + Math.sin(a) * 4.6);
+      o.rotation.set(Math.sin(a) * 0.5, a, Math.cos(a) * 0.5);
+    }
+  }
+
+  // HUD
+  root.style.setProperty('--p', p.toFixed(4));
+  const d = Math.round(p * 100);
+  if (d !== lastDepth) { lastDepth = d; depthEl.textContent = d >= 99 ? 'VRIJHEID' : 'DIEPTE ' + d + ' M'; }
+
+  renderer.render(scene, camera);
+  if (first) { first = false; document.body.classList.add('ready'); }
+}
+frame();
+</script>
+</body>
+</html>
